@@ -1,0 +1,63 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.SignalR.Client
+@inject IJSRuntime js
+@inject NavigationManager NavManager
+
+<div onclick="document.getElementById('ChatMessage').focus()" 
+      class="bg-terminal" 
+      onload="setTimeout(()=>document.getElementById('ChatMessage').focus(),8000)">
+    <div class="css-typing" id="chatBox" @ref="ChatBox">
+        <p id="intro intro-1">
+            Wake up, Neo...
+        </p>
+        <p id="intro intro-2">
+            The Matrix has you...
+        </p>
+        <p id="intro intro-3">
+            Follow the white rabbit...
+        </p>
+        <p id="intro intro-4">
+            Knock, knock, Neo.
+        </p>
+    </div>
+    <form @onsubmit="SubmitChat" autocomplete="off">
+        <input @ref="TextBox" name="ChatMessage" id="ChatMessage" @bind="ChatMessage" class="bg-terminal-input" />
+        <button type="submit" hidden />
+    </form>
+</div>
+
+@code{
+
+    public ElementReference ChatBox { get; set; }
+    public ElementReference TextBox { get; set; }
+    public string ChatMessage { get; set; }
+    private HubConnection connection { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await Task.Delay(8000);
+        if (connection == null)
+        {
+            connection = new HubConnectionBuilder()
+                .WithUrl($"{NavManager.BaseUri}chathub")
+                .WithAutomaticReconnect()
+                .Build();
+
+            connection.On<string>("UpdateChat", UpdateChat);
+
+            await connection.StartAsync();
+        }
+    }
+
+    private async Task UpdateChat(string message)
+    {
+        await js.InvokeVoidAsync("addNewChat", TextBox, ChatBox, message);
+    }
+
+    private void SubmitChat()
+    {
+        connection.InvokeAsync("SubmitChat", ChatMessage);
+        ChatMessage = string.Empty;
+    }
+
+}

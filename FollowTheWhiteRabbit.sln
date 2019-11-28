@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FollowTheWhiteRabbit", "FollowTheWhiteRabbit\FollowTheWhiteRabbit.csproj", "{C3094392-D3BA-458E-9E8E-85E51D4C44F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3094392-D3BA-458E-9E8E-85E51D4C44F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3094392-D3BA-458E-9E8E-85E51D4C44F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3094392-D3BA-458E-9E8E-85E51D4C44F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3094392-D3BA-458E-9E8E-85E51D4C44F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {243EA80A-0EC4-48B2-A22B-6E7758FC1DE3}
+	EndGlobalSection
+EndGlobal
