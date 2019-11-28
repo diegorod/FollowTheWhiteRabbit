@@ -55,8 +55,9 @@
 
     private void SubmitChat()
     {
+        var message = ChatMessage;
         ChatMessage = string.Empty;
-        connection.InvokeAsync("SubmitChat", ChatMessage);
+        connection.InvokeAsync("SubmitChat", message);
     }
 
 }
