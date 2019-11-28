@@ -3,8 +3,7 @@
 @inject IJSRuntime js
 @inject NavigationManager NavManager
 
-<div onclick="document.getElementById('ChatMessage').focus()" 
-      class="bg-terminal" 
+<div class="bg-terminal" 
       onload="setTimeout(()=>document.getElementById('ChatMessage').focus(),8000)">
     <div class="css-typing" id="chatBox" @ref="ChatBox">
         <p id="intro-1" class="intro">
