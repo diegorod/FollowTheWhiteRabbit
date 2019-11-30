@@ -26,11 +26,11 @@ html {
     font-size: 14px;
     line-height: 14px;
     color: green;
-    white-space: nowrap;
     overflow: hidden;
 }
 
 .css-typing .intro {
+    white-space: nowrap;
     border-right: .15em solid green;
 }
 

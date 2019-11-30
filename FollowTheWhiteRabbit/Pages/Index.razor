@@ -1,10 +1,11 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.SignalR.Client
+@implements IDisposable
 @inject IJSRuntime js
 @inject NavigationManager NavManager
 
-<div class="bg-terminal" 
-      onload="setTimeout(()=>document.getElementById('ChatMessage').focus(),8000)">
+<div class="bg-terminal"
+     onload="setTimeout(()=>document.getElementById('ChatMessage').focus(),8000)">
     <div class="css-typing" id="chatBox" @ref="ChatBox">
         <p id="intro-1" class="intro">
             Wake up, Neo...
@@ -32,16 +33,16 @@
     public string ChatMessage { get; set; }
     private HubConnection connection { get; set; }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected async override Task OnAfterRenderAsync(bool firstRender)
     {
         await Task.Delay(8000);
-        if (connection == null)
+        if (firstRender && connection == null)
         {
             connection = new HubConnectionBuilder()
                 .WithUrl($"{NavManager.BaseUri}chathub")
                 .WithAutomaticReconnect()
                 .Build();
-
+            connection.KeepAliveInterval = TimeSpan.FromSeconds(5);
             connection.On<string>("UpdateChat", UpdateChat);
 
             await connection.StartAsync();
@@ -58,6 +59,14 @@
         var message = ChatMessage;
         ChatMessage = string.Empty;
         connection.InvokeAsync("SubmitChat", message);
+    }
+
+    public void Dispose()
+    {
+        if (connection != null)
+        {
+            connection.StopAsync();
+        }
     }
 
 }

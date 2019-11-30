@@ -15,9 +15,17 @@ namespace FollowTheWhiteRabbit
 
         public async override Task OnConnectedAsync()
         {
+            await Groups.AddToGroupAsync(Context.ConnectionId, "Matrix");
             await Clients.Client(Context.ConnectionId).SendAsync("UpdateChat", $"Operator: You are plugged in.");
-            await Clients.AllExcept(Context.ConnectionId).SendAsync("UpdateChat", $"Operator: A new user plugged in.");
+            await Clients.AllExcept(Context.ConnectionId).SendAsync("UpdateChat", $"Operator: A new user ({Context.ConnectionId}) plugged in.");
             await base.OnConnectedAsync();
+        }
+
+        public async override Task OnDisconnectedAsync(Exception exception)
+        {
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, "Matrix");
+            await Clients.All.SendAsync("UpdateChat", $"Operator: A user ({Context.ConnectionId}) has unplugged.");
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }
