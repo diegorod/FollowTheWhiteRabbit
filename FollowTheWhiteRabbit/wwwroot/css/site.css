@@ -17,7 +17,7 @@ html {
     -webkit-tap-highlight-color: black;
     border-color: black;
     outline: none;
-    color: green;
+    color: lawngreen;
     font-family: "Courier";
 }
 
@@ -25,13 +25,13 @@ html {
     font-family: "Courier";
     font-size: 14px;
     line-height: 14px;
-    color: green;
+    color: lawngreen;
     overflow: hidden;
 }
 
 .css-typing .intro {
     white-space: nowrap;
-    border-right: .15em solid green;
+    border-right: .15em solid lawngreen;
 }
 
 .css-typing #intro-1 {
@@ -81,7 +81,7 @@ html {
     }
 
     99.9% {
-        border-right: .15em solid green;
+        border-right: .15em solid lawngreen;
     }
 
     100% {
@@ -95,7 +95,7 @@ html {
     }
 
     99.9% {
-        border-right: .15em solid green;
+        border-right: .15em solid lawngreen;
     }
 
     100% {
@@ -113,7 +113,7 @@ html {
     }
 
     99.9% {
-        border-right: .15em solid green;
+        border-right: .15em solid lawngreen;
     }
 
     100% {
@@ -132,7 +132,7 @@ html {
     }
 
     99.9% {
-        border-right: .15em solid green;
+        border-right: .15em solid lawngreen;
     }
 
     100% {
